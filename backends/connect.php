@@ -1,0 +1,25 @@
+<?php
+  $conn = null;
+
+  function connect() {
+    global $conn;
+
+    $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+
+    $server = $url["host"];
+    $username = $url["user"];
+    $password = urldecode($url["pass"]);
+    $db = substr($url["path"], 1);
+
+    $conn = new mysqli($server, $username, $password, $db);
+    $conn->set_charset("utf8");
+
+    // Check connection
+    if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+    } 
+    echo "Connected successfully";
+  }
+
+  connect();
+?>
