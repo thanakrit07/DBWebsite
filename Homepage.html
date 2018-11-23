@@ -25,18 +25,22 @@
         }
 
         .webBody {
-            background: url(./pic/Home1.jpg);
+            background: url(./bg/Home2.jpg);
             background-repeat: no-repeat;
-            background-size: 115vw;
+            background-size: 100vw;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            background-position-x: -15vw;
         }
 
         .thumbnail-bg {
-            background: rgba(117, 241, 204, 0.7);
+            background: rgba(231, 56, 114, 0.8);
             border-radius: 10px;
+        }
+
+        .thumbnail-bg:hover {
+            background: rgba(102, 23, 49, 1);
+            border: 3px solid #000000;
         }
     </style>
 
@@ -58,14 +62,51 @@
 </head>
 
 <body class="container-fluid webBody">
-    <div class="row justify-content-center" style="margin-left: 30vw">
-        <div class="col">
-            <div class="row justify-content-center">
-                <div class="col">
-                    <img src="./icon/icanq_logo.svg" class="img-fluid" alt="Responsive image" style="height: 40vh">
+    <div class="row justify-content-center">
+        <img src="./icon/icanq_logo.svg" class="img-fluid" alt="Responsive image" style="height: 30vh">
+    </div>
+    <div class="row justify-content-between">
+
+        <div class="col" style="margin-top: 0vh;">
+            <div class="row justify-content-start" style="margin-left: 5vw">
+                <div class="column">
+
+                    <div class="row justify-content-center">
+                        <span class="border border-dark thumbnail-bg">
+                            <a class="column" href="#" style="color:#ffffff">
+                                <img src="./icon/order.svg" class="img-fluid" alt="Responsive image" style="height: 12vh; margin: 3vh 3vh 0vh 3vh">
+                                <div class="row justify-content-center"><strong>Order Now</strong></div>
+                            </a>
+                        </span>
+
+                        <span class="border border-dark thumbnail-bg">
+                            <a class="column" href="#" style="color:#ffffff">
+                                <img src="./icon/check-square.svg" class="img-fluid" alt="Responsive image" style="height: 12vh; margin: 3vh 3vh 0vh 3vh">
+                                <div class="row justify-content-center"><strong>Order Status</strong></div>
+                            </a>
+                        </span>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <span class="border border-dark thumbnail-bg">
+                            <a class="column" href="#" style="color:#ffffff">
+                                <img src="./icon/history-2.svg" class="img-fluid" alt="Responsive image" style="height: 12vh; margin: 3vh 3vh 0vh 3vh">
+                                <div class="row justify-content-center"><strong>History</strong></div>
+                            </a>
+                        </span>
+
+                        <span class="border border-dark thumbnail-bg">
+                            <a class="column" href="#" style="color:#ffffff">
+                                <img src="./icon/profile.svg" class="img-fluid" alt="Responsive image" style="height: 12vh; margin: 3vh 3vh 0vh 3vh">
+                                <div class="row justify-content-center"><strong>View Profile</strong></div>
+                            </a>
+                        </span>
+                    </div>
                 </div>
             </div>
+        </div>
 
+        <div class="col">
             <div class="row justify-content-start" style="margin-top: 8vh">
                 <H1 style="color:whitesmoke">I CAN QUEUE.</H1>
             </div>
@@ -81,44 +122,6 @@
             </div>
         </div>
 
-        <div class="col" style="margin-top: 20vh;">
-            <div class="row justify-content-center" style="margin-top: 2vh">
-                <div class="column">
-
-                    <div class="row justify-content-center">
-                        <span class="border border-dark thumbnail-bg">
-                            <div class="column">
-                                <img src="./icon/order.svg" class="img-fluid" alt="Responsive image" style="height: 17vh; margin: 3vh 3vh 0vh 3vh">
-                                <div class="row justify-content-center"><strong>Order Now</strong></div>
-                            </div>
-                        </span>
-
-                        <span class="border border-dark thumbnail-bg">
-                            <div class="column">
-                                <img src="./icon/check-box.svg" class="img-fluid" alt="Responsive image" style="height: 17vh; margin: 3vh 3vh 0vh 3vh">
-                                <div class="row justify-content-center"><strong>Order Status</strong></div>
-                            </div>
-                        </span>
-                    </div>
-
-                    <div class="row justify-content-center">
-                        <span class="border border-dark thumbnail-bg">
-                            <div class="column">
-                                <img src="./icon/history.svg" class="img-fluid" alt="Responsive image" style="height: 17vh; margin: 3vh 3vh 0vh 3vh">
-                                <div class="row justify-content-center"><strong>History</strong></div>
-                            </div>
-                        </span>
-
-                        <span class="border border-dark thumbnail-bg">
-                            <div class="column">
-                                <img src="./icon/profile.svg" class="img-fluid" alt="Responsive image" style="height: 17vh; margin: 3vh 3vh 0vh 3vh">
-                                <div class="row justify-content-center"><strong>History</strong></div>
-                            </div>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
