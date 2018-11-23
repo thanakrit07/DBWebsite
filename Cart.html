@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+
+    <title>Cart</title>
+    <style>
+        #btnr {
+            width: 130px;
+            height: 70px;
+            margin-left: 20px;
+            text-align: center;
+        }
+
+        .well {
+            background: rgb(207, 207, 207);
+            max-width: 75vw;
+            margin-top: 7vh;
+        }
+
+        .well2 {
+            background: rgb(207, 207, 207);
+            max-width: 75vw;
+        }
+        .custom-select {
+            width: 20%;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">iCanQ</a>
+        <div class="dropdown ml-md-auto">
+            <a class="btn btn-secondary dropdown-toggle " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                Name
+            </a>
+            <div class="dropdown-menu dropdown-menu-right " aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="Registration.html">Profile</a>
+                <a class="dropdown-item" href="#">Credit Card</a>
+                <a class="dropdown-item" href="#">History</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="Webpage.html">Logout</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <a class="btn btn-secondary" href="#" role="button" style=" margin-left: 10px">
+                <img src="./icon/cart.svg" style="width: 20px;height: 20px;">
+            </a>
+
+        </div>
+    </nav>
+    <div class="row  offset-md-1">
+        <a class="display-3">Name | Cart</a>
+
+    </div>
+
+    <div class="row offset-md-1 well">
+        <div class="offset-md-1 col-sm-2">
+            <input type="checkbox" class="form-check-input" id="Check2">
+            <label class="form-check-label">รายการอาหาร</label>
+        </div>
+        <label class="form-check-label offset-md-1 col-sm-2">ราคาต่อจาน</label>
+        <label class="form-check-label offset-md-1 col">จำนวน</label>
+        <label class="form-check-label offset-md-1 col">ราคารวม</label>
+        <label class="form-check-label offset-md-1 col">Action</label>
+    </div>
+
+    <div id="shop1">
+        <div class="row offset-md-1 well border-bottom">
+            <div class="offset-md-1 col">
+                <input type="checkbox" class="form-check-input" id="Check2">
+                <label class="form-check-label">SHOP 1</label>
+            </div>
+        </div>
+        <div class="row offset-md-1 well2">
+            <div class="offset-md-1 col-sm-2">
+                <input type="checkbox" class="form-check-input" id="Check2">
+                <label class="form-check-label">Food1</label>
+            </div>
+            <label class="form-check-label offset-md-1 col-sm-2">40 บาท</label>
+            <div class="btn-group btn-group-sm offset-md-1 col" role="group" aria-label="...">
+                <button type="button" class="btn btn-secondary">-</button>
+                <label class="btn">2</label>
+                <button type="button" class="btn btn-secondary">+</button>
+            </div>
+            <label class="form-check-label offset-md-1 col">80 บาท</label>
+            <button type="button" class="btn btn-secondary offset-md-1">Delete</button>
+        </div>
+        <div class="row offset-md-1 well2">
+            <div class="offset-md-1 col-sm-2">
+                <input type="checkbox" class="form-check-input" id="Check2">
+                <label class="form-check-label">Food2</label>
+            </div>
+            <label class="form-check-label offset-md-1 col-sm-2">50 บาท</label>
+            <div class="btn-group btn-group-sm offset-md-1 col" role="group" aria-label="...">
+                <button type="button" class="btn btn-secondary">-</button>
+                <label class="btn">2</label>
+                <button type="button" class="btn btn-secondary">+</button>
+            </div>
+            <label class="form-check-label offset-md-1 col">100 บาท</label>
+            <button type="button" class="btn btn-secondary offset-md-1">Delete</button>
+        </div>
+    </div>
+
+    <div id="shop2">
+        <div class="row offset-md-1 well border-bottom">
+            <div class="offset-md-1 col">
+                <input type="checkbox" class="form-check-input" id="Check2">
+                <label class="form-check-label">SHOP 2</label>
+            </div>
+        </div>
+        <div class="row offset-md-1 well2">
+            <div class="offset-md-1 col-sm-2">
+                <input type="checkbox" class="form-check-input" id="Check2">
+                <label class="form-check-label">Food1</label>
+            </div>
+            <label class="form-check-label offset-md-1 col-sm-2">40 บาท</label>
+            <div class="btn-group btn-group-sm offset-md-1 col" role="group" aria-label="...">
+                <button type="button" class="btn btn-secondary">-</button>
+                <label class="btn">2</label>
+                <button type="button" class="btn btn-secondary">+</button>
+            </div>
+            <label class="form-check-label offset-md-1 col">80 บาท</label>
+            <button type="button" class="btn btn-secondary offset-md-1">Delete</button>
+        </div>
+    </div>
+    </div>
+
+
+    <div id="buy">
+        <div class="row offset-md-1 well">
+            <div class="offset-md-1 col-sm-2">
+                <input type="checkbox" class="form-check-input" id="Check2">
+                <label class="form-check-label">เลือกทั้งหมด</label>
+            </div>
+            <label class="form-check-label offset-md-5">grand total (3 menu) 120 บาท</label>
+            <button type="button" class="btn btn-primary col offset-md-1" data-toggle="modal" data-target="#exampleModalCenter">
+                BUY
+            </button>
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalCenterTitle">Select pick up time</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                        <div class="row offset-sm-4">
+                                <select class="custom-select custom-select-sm">
+                                    <div multiple>
+                                        <option selected>00</option>
+                                        <option value="1">08</option>
+                                        <option value="2">09</option>
+                                        <option value="3">10</option>
+                                        <option value="4">11</option>
+                                        <option value="5">12</option>
+                                        <option value="6">13</option>
+                                        <option value="7">14</option>
+                                        <option value="8">15</option>
+                                        <option value="9">16</option>
+                                    </div>
+                                      </select>
+                                      <div class="h4 col-sm-1"> : </div>
+                                      
+                                      <select class="custom-select custom-select-sm">
+                                            <option selected>00</option>
+                                            <option value="1">15</option>
+                                            <option value="2">30</option>
+                                            <option value="3">45</option>
+                                          </select>
+                        </div>
+                                   
+                       
+                               
+                        </div>
+                        <div class="modal-footer">
+                          <a class="btn btn-secondary" data-dismiss="modal">Back</a>
+                          <a class="btn btn-primary" href="Confirm.html">Next</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
