@@ -78,7 +78,7 @@ CREATE TABLE Foodlist (
     Menu VARCHAR(30) NOT NULL,
     Price INTEGER NOT NULL,
     ShopRec BIT(1) NOT NULL,
-    Rating FLOAT NOT NULL,
+    Rating DOUBLE NOT NULL,
     PRIMARY KEY (SID,Menu),
     CONSTRAINT SID_Foodlist_FK 
 		FOREIGN KEY Foodlist(SID)

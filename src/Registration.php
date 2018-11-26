@@ -1,59 +1,59 @@
 <?php
-// define variables and set to empty values
+
 $Fname = $Lname = $tel = $agree = $submit = "";
 $FnameErr = $LnameErr = $telErr = $agreeErr = "";
-$next = $corr = (bool)false;
+$next = $corr = (bool) false;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST["Fname"])) {
+  if (empty($_POST["Fname"])) {
       $FnameErr = "First Name is required";
-    } else {
+  } else {
       $Fname = test_input($_POST["Fname"]);
       // check if name only contains letters and whitespace
-      if (!preg_match("/^[a-zA-Z ]*$/",$Fname)) {
-        $FnameErr = "Only letters and white space allowed";
+      if (!preg_match("/^[a-zA-Z ]*$/", $Fname)) {
+          $FnameErr = "Only letters and white space allowed";
       }
-    }
+  }
 
-    if (empty($_POST["Lname"])) {
+  if (empty($_POST["Lname"])) {
       $LnameErr = "Last Name is required";
-    } else {
+  } else {
       $Lname = test_input($_POST["Lname"]);
       // check if name only contains letters and whitespace
-      if (!preg_match("/^[a-zA-Z ]*$/",$Lname)) {
-        $LnameErr = "Only letters and white space allowed"; 
+      if (!preg_match("/^[a-zA-Z ]*$/", $Lname)) {
+          $LnameErr = "Only letters and white space allowed";
       }
-    }
+  }
 
-    if (empty($_POST["tel"])) {
+  if (empty($_POST["tel"])) {
       $telErr = "Telephone number is required";
-    } else {
+  } else {
       $tel = test_input($_POST["tel"]);
       // check if tel are in correct form
-      if (!preg_match("/^0[0-9]{9}$/",$tel)) {
-        $telErr = "Please fill in form of 0812345678"; 
-      }else $corr = true;
-    }
+      if (!preg_match("/^0[0-9]{9}$/", $tel)) {
+          $telErr = "Please fill in form of 0812345678";
+      } else {
+          $corr = true;
+      }
 
-    if (empty($_POST["agree"])) {
+  }
+
+  if (empty($_POST["agree"])) {
       $agreeErr = "You must agree before submitting.";
-    } else {
+  } else {
       $agree = test_input($_POST["agree"]);
-    }
+  }
+
+  if (!empty($_POST["submit"])) {
     $submit = test_input($_POST["submit"]);
+  } 
 }
 
-function test_input($data)
-{
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
-?>
-  <div class="container-fluid">
+?> 
+<div id="registration" style="display: none;">
+ <div class="container-fluid">
     <img src="/../icon/profile.svg" class="rounded mx-auto d-block" alt="..." style="width: 200px; height: 200px; margin-top: 20vh ; margin-bottom: 2vh;background: black">
-    <form class="needs-validation offset-md-3" novalidate method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+    <form class="needs-validation offset-md-3" novalidate method="post">
       <div class="form-row">
         <div class="col-md-4 mb-3">
           <label for="validationCustom01">First name <span class="require">*</span></label>
@@ -63,7 +63,7 @@ function test_input($data)
         </div>
 
         <div class="col-md-4 mb-3">
-        <label for="validationCustom01">Last name <span class="require">*</span></label>
+          <label for="validationCustom01">Last name <span class="require">*</span></label>
           <input type="text" name="Lname" value="<?php echo $Lname;?>" class="form-control" id="validationCustom02" placeholder="Last name" required>
           <span class="error" style="color: #e13c3c"><?php echo $LnameErr;?></span>
         </div>
@@ -95,15 +95,13 @@ function test_input($data)
         </div>
       </div>
 
-      <input type="submit" name="submit" value="Submit" class="btn btn-primary submit" style="margin-bottom: 5vh">
+      <input id="btn-submit" type="submit" name="submit" value="Submit" class="btn btn-primary submit" style="margin-bottom: 5vh">
     </form>
   </div>
-
+<div>
 
   <?php 
-  $next = (bool) !empty($_POST["submit"]) && !empty($_POST["agree"]) && !empty($_POST["tel"]) && (bool)$corr && !empty($_POST["Lname"]) && !empty($_POST["Fname"]);
-  ?> 
-  <?php 
+    $next = (bool) !empty($_POST["submit"]) && !empty($_POST["agree"]) && !empty($_POST["tel"]) && (bool)$corr && !empty($_POST["Lname"]) && !empty($_POST["Fname"]);
     if($next) {
       include '/../backends/register.php';
     }
