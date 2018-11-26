@@ -1,26 +1,21 @@
 <?php
-require __dir__ .'/env.php';
+require __dir__ . '/env.php';
 
 $conn = null;
 
-function connect()
-{
-    global $conn;
+global $conn;
 
-    $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
-    $server = $url["host"];
-    $username = $url["user"];
-    $password = urldecode($url["pass"]);
-    $db = substr($url["path"], 1);
+$server = $url["host"];
+$username = $url["user"];
+$password = urldecode($url["pass"]);
+$db = substr($url["path"], 1);
 
-    $conn = new mysqli($server, $username, $password, $db);
-    $conn->set_charset("utf8");
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+$conn = new mysqli($server, $username, $password, $db);
+$conn->set_charset("utf8");
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
-
-connect();
 ?>

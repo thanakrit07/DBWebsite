@@ -15,7 +15,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
       <!-- logo -->
-      <a class="navbar-brand" href="/Homepage.php">iCanQ</a>
+      <a class="navbar-brand" href="./Homepage.php">iCanQ</a>
 
       <!-- Dropmenu -->
       <div class="dropdown ml-md-auto">
@@ -43,56 +43,48 @@
 
 <body>
     <div class="row d-flex justify-content-start" style="margin-top: 10vh">
-        <h1 class="display-1" style="margin-left: 5vw">Shop Name :</h1>
-        <p class="display-4 offset-md-1" style="margin-top: 5vh">PPAP</p>
+        <h1 class="display-1" style="margin-left: 5vw">Order |</h1>
     </div>
-    <div class="row justify-content-between" style="width: 80vw;">
-        <div class="display-4 h1 col-md-4" style="margin-left: 4vw">Menu</div>
-        <h2 class="display-4 h2 col-md-4">รายการอาหาร</h2>
-        <h3 class="display-4 h2 col-md-3">Rating</h3>
+    <div class="row justify-content-center" style="width: 80vw; margin-top :5vh;">
+        <h2 class="display-4 h2 col-md-3">Shop</h2>
+        <h3 class="display-4 h2 col-md-4">Open - Close</h3>
     </div>
 
 <?php
 require '/../backends/connect.php';
 global $conn;
-// $menuHead = array();
-$menu = array();
+$shop = array();
 
-//get menu list
-$sql = "call getMenu(2000000000)";
+//get shop list
+$sql = "SELECT * FROM Shop";
 $result = $conn->query($sql);
 
-// while ($property = mysqli_fetch_field($result)) {
-//     echo '<td>' . $property->name . '</td>'; //get field name for header
-//     array_push($menuHead, $property->name); //save those to array
-// }
-
 while ($row = mysqli_fetch_array($result)) {
-    array_push($menu, $row);
+    array_push($shop, $row);
 }
-echo '<div class="offset-md-4" style="margin-top: 5vh; width: 50vw;">';
-for ($i = 1; $i <= sizeof($menu); $i++) {
+echo '<div class="offset-md-1" style="margin-top: 5vh; width: 50vw;">';
+for ($i = 1; $i <= sizeof($shop); $i++) {
     echo '<div class="row">';
     echo '<div class="shadow-sm p-2 mb-5 rounded col-md-6" style="font-size:large; text-align: center">';
-    echo '<pre><strong>' . $i . '. ' . $menu[$i - 1]["Menu"] . '</strong></pre>';
+    echo '<pre><strong>' . $i . '. ' . $shop[$i - 1]["Sname"] . '</strong></pre>';
     echo '</div>';
     echo '<p class="shadow-sm p-2 mb-5 rounded col-ms-2 offset-md-2">';
-    echo $menu[$i - 1]["Rating"];
+    echo $shop[$i - 1]["Open_time"] . ' - ' . $shop[$i - 1]["Close_time"];
     echo '</p>';
     echo '</div>';
 }
 echo '</div>';
 ?>
 
-  <!-- Optional JavaScript -->
-  <!-- <script src="backends/index.js"></script> -->
+<!-- Optional JavaScript -->
+<!-- <script src="backends/index.js"></script> -->
 
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-    crossorigin="anonymous"></script>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+  crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+  crossorigin="anonymous"></script>
 </body>
 </html>

@@ -28,5 +28,7 @@ VALUES ('$rowcount','$Fname','$Lname','$tel')";
 
  if ($conn->query($sqlIn) === false) {
     reject('{"success":false, "msg":"Insert error"}');
+ }else{
+     echo "OK";
  }
 ?>
