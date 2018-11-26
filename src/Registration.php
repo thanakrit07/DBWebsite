@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?> 
-<div id="registration" style="display: none;">
+<div id="registration">
  <div class="container-fluid">
     <img src="/../icon/profile.svg" class="rounded mx-auto d-block" alt="..." style="width: 200px; height: 200px; margin-top: 20vh ; margin-bottom: 2vh;background: black">
     <form class="needs-validation offset-md-3" novalidate method="post">
