@@ -1,3 +1,5 @@
+<?php require '/../backends/get_data.php';?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +15,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
       <!-- logo -->
-      <a class="navbar-brand" href="/src/Homepage.php">iCanQ</a>
+      <a class="navbar-brand" href="./Homepage.php">iCanQ</a>
 
       <!-- Dropmenu -->
       <div class="dropdown ml-md-auto">
@@ -22,7 +24,7 @@
         </a>
 
         <div class="dropdown-menu dropdown-menu-right " aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" href="/src/Profile.php">Profile</a>
+            <a class="dropdown-item" href="#">Profile</a>
             <a class="dropdown-item" href="/src/html/CreditCard.html">Credit Card</a>
             <a class="dropdown-item" href="/src/html/History.html">History</a>
             <div class="dropdown-divider"></div>
@@ -40,45 +42,11 @@
 </head>
 
 <body>
-<?php 
-    require '/../backends/get_data.php';
-    global $menu,$ShopName;
-
-echo '<form action="./MenuItem.php" method="POST">';
-    echo '<div class="row d-flex justify-content-start" style="margin-top: 10vh">';
-        echo '<h1 class="display-1" style="margin-left: 5vw">Order | ';
-        echo '<input class="display-1" style="border-style: none" type="text" name="getSName" readonly value='.$ShopName.'>';
-        echo '</h1>';
-    echo '</div>
-    <div class="row justify-content-center" style="width: 80vw; margin-top :5vh;">
-        <span class="col-md-1"></span>
-        <h2 class="display-4 h2 col-md-3">Menu</h2>
-        <h2 class="display-4 h2 col-md-4">Rating</h2>
-    </div>';
-echo '<div class="offset-md-1" style="margin-top: 5vh; width: 50vw;">';
-for ($i = 1; $i <= sizeof($menu); $i++) {
-    echo '<div class="row justify-content-start">';
-    if($menu[$i - 1]["ShopRec"]==1){
-        echo '<span class="col-ms-2">';
-        echo '<img src="/../../icon/star.svg" class="img-fluid" alt="Responsive image" style="height: 5vh;">';
-        echo '</span>';
-        echo '<span style="margin-left :2vw;"></span>';
-    }else{
-        echo '<span class="col-ms-2 offset-md-1"></span>';
-    }
-    //echo '<span class="col-ms-2 offset-md-1"></span>';
-    echo '<input type="submit" name="getMenu" value='.$menu[$i - 1]["Menu"].' class="shadow-sm p-2 mb-5 rounded col-md-6" style="font-size:large; text-align: center; background :#ffffff">';
-    // echo '<div class="shadow-sm p-2 mb-5 rounded col-md-6" style="font-size:large; text-align: center">';
-    // echo '<pre><strong>' . $i . '. ' . $menu[$i - 1]["Menu"] . '</strong></pre>';
-    // echo '</div>';
-    echo '<p class="shadow-sm p-2 mb-5 rounded col-ms-2 offset-md-2">';
-    echo $menu[$i - 1]["Rating"];
-    echo '</p>';
-    echo '</div>';
-}
-echo '</div>';
-echo '</form>';
-?>
+<div id = "profile">
+    <div class="container" style="margin-top: 20vh ;margin-left: 10vw; margin-right: 20vw;">
+        <?php include '/../backends/getEditProfile.php';?>
+    </div>
+</div>
 
   <!-- Optional JavaScript -->
   <!-- <script src="backends/index.js"></script> -->

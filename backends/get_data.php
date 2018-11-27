@@ -1,7 +1,11 @@
 <?php
 require 'connect.php';
 global $conn;
-$Fname = $Lname = $Tel = "";
+$Fname = $Lname = $Tel = $Religion = $Allergy = "";
+$ShopName = $menuItem = "";
+$menu = $shop = $menuInfo = $review = $queue = array();
+$queue = $customer = array();
+$next1 = $next2 = true;
 
 function test_input($data)
 {
@@ -19,20 +23,20 @@ function reject($txt)
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
+
     if (!empty($_POST["data"])) {
-        
+
         //test_input
-        if (!empty($_POST["Fname"])){
+        if (!empty($_POST["Fname"])) {
             $Fname = test_input($_POST["Fname"]);
         }
-        if (!empty($_POST["Lname"])){
+        if (!empty($_POST["Lname"])) {
             $Lname = test_input($_POST["Lname"]);
         }
-        if (!empty($_POST["Tel"])){
+        if (!empty($_POST["Tel"])) {
             $Tel = test_input($_POST["Tel"]);
         }
-    
+
         $sql = "SELECT * FROM Customer";
         if ($result = mysqli_query($conn, $sql)) {
             // Return the number of rows in result set
@@ -41,58 +45,183 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             mysqli_free_result($result);
         }
 
-        $sqlIn = "INSERT INTO Customer (CID,Fname, Lname, Tel) 
+        $sqlIn = "INSERT INTO Customer (CID,Fname, Lname, Tel)
         VALUES ('$rowcount','$Fname','$Lname','$Tel')";
 
         if ($conn->query($sqlIn) === false) {
             reject('{"success":false, "msg":"Insert error"}');
         } else {
+            //add Cart
+            $CID = $rowcount;
+
+            //gen QID
+            $sql = "SELECT * FROM OrderQueue";
+            if ($result = mysqli_query($conn, $sql)) {
+                // Return the number of rows in result set
+                $rowcount = mysqli_num_rows($result);
+                // Free result set
+                mysqli_free_result($result);
+            }
+            $QID = $rowcount + 5;
+
+            //CreateCart
+            $sql = "call addOrderQueue('$QID','$CID','2222222220')";
+            if ($conn->query($sql) === false) {
+                reject('{"success":false, "msg":"Insert error"}');
+            }
+
             header('Location: /src/Homepage.php');
+        }
+    } else if (!empty($_POST["getShop"])) {
+
+        //test_input
+        $ShopName = $_POST["getShop"];
+
+        //getShopID
+        $sql = "SELECT SID FROM Shop WHERE Sname = '$ShopName'";
+        $result = mysqli_query($conn, $sql);
+        while ($row = mysqli_fetch_array($result)) {
+            array_push($shop, $row);
+        }
+        $ShopID = $shop[0]["SID"];
+        $menu = array();
+
+        //get menu list
+        $sqlmenu = "call getMenu('$ShopID')";
+        $resultmenu = $conn->query($sqlmenu);
+
+        while ($row = mysqli_fetch_array($resultmenu)) {
+            array_push($menu, $row);
+        }
+    } else if (!empty($_POST["getMenu"])) {
+
+        //test_input
+        $menuName = $_POST["getMenu"];
+        $ShopName = $_POST["getSName"];
+
+        //getShopID
+        $sql = "SELECT SID FROM Shop WHERE Sname = '$ShopName'";
+        $result = mysqli_query($conn, $sql);
+        while ($row = mysqli_fetch_array($result)) {
+            array_push($shop, $row);
+        }
+        $ShopID = $shop[0]["SID"];
+
+        //get menu list
+        $sqlmenu = "call getFoodinfo('$ShopID','$menuName')";
+        $resultmenu = $conn->query($sqlmenu);
+
+        while ($row = mysqli_fetch_array($resultmenu)) {
+            array_push($menuInfo, $row);
+        }
+
+        //get review
+        //$sqlreview = "call getReview('$ShopID','$menuName')";
+        //$resultreview = mysqli_query($conn, $sqlreview) or die ( $mysqli->error );
+
+        // while ($row = mysqli_fetch_array($resultreview)) {
+        //     array_push($review, $row);
+        // }
+
+    } else if (!empty($_POST["OK"])) {
+
+        //test_input
+        if (!empty($_POST["editFname"])) {
+            $Fname = test_input($_POST["editFname"]);
+            $next1 = false;
+        }
+        if (!empty($_POST["editLname"])) {
+            $Lname = test_input($_POST["editLname"]);
+            $next1 = false;
+        }
+        if (!empty($_POST["editTel"])) {
+            $Tel = test_input($_POST["editTel"]);
+            $next1 = false;
+        }
+        if (!empty($_POST["editReligion"])) {
+            $Religion = test_input($_POST["editReligion"]);
+            $next1 = false;
+        }
+
+        $sql = "SELECT * FROM Customer";
+        if ($result = mysqli_query($conn, $sql)) {
+            // Return the number of rows in result set
+            $rowcount = mysqli_num_rows($result);
+            // Free result set
+            mysqli_free_result($result);
+        }
+        $CID = $rowcount - 1;
+
+        $sqlEdit = "UPDATE Customer SET Fname = '$Fname', Lname = '$Lname', Religion = '$Religion', Tel = '$Tel' WHERE CID = '$CID';";
+        if ($conn->query($sqlEdit) === false) {
+            reject('{"success":false, "msg":"Update error"}');
+        } else {
+            $next1 = true;
+        }
+
+        //Allergy
+        if (!empty($_POST["editAllergy"])) {
+            $Allergy = test_input($_POST["editAllergy"]);
+            $next2 = false;
+            $sqlAllergic = "INSERT INTO Allergic (CID,Allergic) VALUES ('$CID','$Allergy')";
+            if ($conn->query($sqlAllergic) === false) {
+                reject('{"success":false, "msg":"Insert Allergic error"}');
+            } else {
+                $next2 = true;
+            }
+        }
+
+        if ($next1 && $next2) {
+            header('Location: /src/Profile.php');
+        }
+    } else if (!empty($_POST["addCart"])) {
+        
+        //get menu
+        $menuName = test_input($_POST["getMName"]);
+
+        //get shop
+        $ShopName = test_input($_POST["getSName"]);
+
+        //get CID
+        $sql = "SELECT * FROM Customer";
+        if ($result = mysqli_query($conn, $sql)) {
+            // Return the number of rows in result set
+            $rowcount = mysqli_num_rows($result);
+            // Free result set
+            mysqli_free_result($result);
+        }
+        $CID = $rowcount-1;
+
+        //get SID
+        $sql = "SELECT SID FROM Shop WHERE Sname = '$ShopName'";
+        $result = mysqli_query($conn, $sql);
+        while ($row = mysqli_fetch_array($result)) {
+            array_push($shop, $row);
+        }
+        $ShopID = $shop[0]["SID"];
+
+        //get QID
+        $sql = "SELECT QID FROM OrderQueue WHERE CID = '$CID'";
+        $result = mysqli_query($conn, $sql);
+        while ($row = mysqli_fetch_array($result)) {
+            array_push($queue, $row);
+        }
+        $QID = $queue[0]["QID"];
+
+        //gen OID
+        $sql = "SELECT * FROM OrderItem";
+        if ($result = mysqli_query($conn, $sql)) {
+            // Return the number of rows in result set
+            $rowcount = mysqli_num_rows($result);
+            // Free result set
+            mysqli_free_result($result);
+        }
+        $OID = $rowcount;
+
+        //addOrder
+        $sql = "call addOrderItem('$QID','$OID','$ShopID','$menuName')";
+        if ($conn->query($sql) === false) {
+            reject('{"success":false, "msg":"add order error"}');
         }
     }
 }
-// if (isset($_POST['data'])) {
-//     if($_POST['data'] == submit) {
-//         echo "eiei";
-//         if (empty($_POST["Fname"])) {
-//             $FnameErr = "First Name is required";
-//         } else {
-//             $Fname = test_input($_POST["Fname"]);
-//             // check if name only contains letters and whitespace
-//             if (!preg_match("/^[a-zA-Z ]*$/", $Fname)) {
-//                 $FnameErr = "Only letters and white space allowed";
-//             }
-//         }
-
-//         if (empty($_POST["Lname"])) {
-//             $LnameErr = "Last Name is required";
-//         } else {
-//             $Lname = test_input($_POST["Lname"]);
-//             // check if name only contains letters and whitespace
-//             if (!preg_match("/^[a-zA-Z ]*$/", $Lname)) {
-//                 $LnameErr = "Only letters and white space allowed";
-//             }
-//         }
-
-//         if (empty($_POST["tel"])) {
-//             $telErr = "Telephone number is required";
-//         } else {
-//             $tel = test_input($_POST["tel"]);
-//             // check if tel are in correct form
-//             if (!preg_match("/^0[0-9]{9}$/", $tel)) {
-//                 $telErr = "Please fill in form of 0812345678";
-//             } else {
-//                 $corr = true;
-//             }
-
-//         }
-
-//         if (empty($_POST["agree"])) {
-//             $agreeErr = "You must agree before submitting.";
-//         } else {
-//             $agree = test_input($_POST["agree"]);
-//         }
-//     } else {
-//         echo 'eiei';
-//     }
-// }

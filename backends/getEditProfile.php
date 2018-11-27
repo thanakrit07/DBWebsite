@@ -13,39 +13,45 @@ while ($row = mysqli_fetch_array($result)) {
 
 $sqlAllergy = "SELECT Allergic FROM Allergic WHERE CID = ".$namelist[sizeof($namelist)-1]["CID"];
 $allergy = array();
-$resultAllergy = mysqli_query($conn, $sqlAllergy);
-while ($row = mysqli_fetch_array($resultAllergy)) {
-    array_push($allergy, $row["Allergic"]);
+$resulAllergy = mysqli_query($conn, $sqlAllergy);
+while ($row = mysqli_fetch_array($result)) {
+    array_push($allergy, $row);
 }
-            echo '<form style="margin-top: 3vh;margin-left: 3vw; width : 40vw">';
+        echo '<div class="row">';
+            echo '<img src="/../icon/profile.svg" class="rounded d-block" alt="..." style="width: 200px; height: 200px; background-color: #000000">';
+            echo '<form style="margin-top: 3vh;margin-left: 3vw; width : 40vw" action="/backends/get_data.php" method="POST">';
                 echo '<div class="form-row">';
                     echo '<label for="name" class="col-sm-2 col-form-label">Name</label>';
                     echo '<div class="col-sm-4 offset-sm-1">';
-                        echo '<div type="text" readonly class="form-control-plaintext" id="Name">'.$namelist[sizeof($namelist)-1]["Fname"]. "  " .$namelist[sizeof($namelist)-1]["Lname"].'</div>';
+                        echo '<input type="text" name="editFname" value='.$namelist[sizeof($namelist)-1]["Fname"].'>';
+                    echo '</div>';
+
+                    echo '<div class="col-sm-4 offset-sm-1">';
+                        echo '<input type="text" name="editLname" value='.$namelist[sizeof($namelist)-1]["Lname"].'>';
                     echo '</div>';
                 echo '</div>';
 
                 echo '<div class="form-row">';
                     echo '<label for="Telephone" class="col-sm-2 col-form-label">Telephone</label>';
                     echo '<div class="col-sm-5 offset-sm-1">';
-                        echo '<div type="text" readonly class="form-control-plaintext" id="Telephone">'.$namelist[sizeof($namelist)-1]["Tel"].'</div>';
+                        echo '<input type="text" name="editTel" value='.$namelist[sizeof($namelist)-1]["Tel"].'>';
                     echo '</div>';
                 echo '</div>';
 
                 echo '<div class="form-row">';
                     echo '<label for="Religion" class="col-sm-2 col-form-label">Religion</label>';
                     echo '<div class="col-sm-5 offset-sm-1">';
-                        echo '<div type="text" readonly class="form-control-plaintext" id="Religion">'.$namelist[sizeof($namelist)-1]["Religion"].'</div>';
+                        echo '<input type="text" name="editReligion" value='.$namelist[sizeof($namelist)-1]["Religion"].'>';
                     echo '</div>';
                 echo '</div>';
 
                 echo '<div class="form-row">';
-                    echo '<label for="Allergy" class="col-sm-2 col-form-label">Allergy</label>';
+                    echo '<label for="Allergy" class="col-sm-2 col-form-label">ADD Allergy</label>';
                     echo '<div class="col-sm-5 offset-sm-1">';
-                        for ($i = 0; $i < sizeof($allergy); $i++) {
-                            echo '<div type="text" readonly class="form-control-plaintext" id="Allergy">'.$allergy[$i].'</div>';
-                        }
+                        echo '<input type="text" name="editAllergy">';
                     echo '</div>';
                 echo '</div>';
+                echo '<input type="submit" name="OK" value="OK" class="btn btn-success" style="margin-top: 5vh">';
             echo '</form>';
+            echo '</div>';
 ?>

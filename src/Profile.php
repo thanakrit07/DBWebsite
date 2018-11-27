@@ -20,7 +20,7 @@
       <!-- Dropmenu -->
       <div class="dropdown ml-md-auto">
         <a class="btn btn-secondary dropdown-toggle " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"aria-haspopup="true" aria-expanded="false">
-            Name
+        <?php include '/../backends/getName.php';?>
         </a>
 
         <div class="dropdown-menu dropdown-menu-right " aria-labelledby="dropdownMenuLink">
@@ -48,7 +48,7 @@
             <img src="/../icon/profile.svg" class="rounded d-block" alt="..." style="width: 200px; height: 200px; background-color: #000000">
             <?php include '/../backends/getProfile.php';?>
         </div>
-        <button id="btn-edit" class="btn btn-primary" type="submit" style="margin-top: 5vh;font-size: 20px">Edit</button>
+        <a id="btn-edit" class="btn btn-primary" type="submit" href="./editProfile.php" style="margin-top: 5vh;font-size: 20px">Edit</a>
     </div>
 </div>
 

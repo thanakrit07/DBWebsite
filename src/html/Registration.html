@@ -15,18 +15,18 @@
 <body>
     <div class="container-fluid">
         <img src="/../icon/profile.svg" class="rounded mx-auto d-block" alt="..." style="width: 200px; height: 200px; margin-top: 20vh ; margin-bottom: 2vh;background: black">
-        <form id="registration" class="needs-validation offset-md-3" novalidate action="/backends/get_data.php" method="POST">
+        <form id="registration" class="needs-validation offset-md-3" action="/backends/get_data.php" method="POST">
             <div class="form-row">
                 <div class="col-md-4 mb-3">
                     <label for="validationCustom01">First name <span class="require">*</span></label>
                     <!-- <div class="col-sm-3 title">First name *<span class="require">*</span></div> -->
-                    <input type="text" name="Fname" value="firstname" class="form-control" id="validationCustom01"
+                    <input type="text" name="Fname" placeholder="First Name" class="form-control" id="validationCustom01"
                         placeholder="First name" required>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label for="validationCustom01">Last name <span class="require">*</span></label>
-                    <input type="text" name="Lname" value="lastname" class="form-control" id="validationCustom02"
+                    <input type="text" name="Lname" placeholder="Last Name" class="form-control" id="validationCustom02"
                         placeholder="Last name" required>
                 </div>
             </div>
@@ -38,7 +38,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupPrepend">Tel</span>
                         </div>
-                        <input type="text" name="Tel" value="0812345678" class="form-control" id="validationCustomUsername"
+                        <input type="text" name="Tel" placeholder="0812345678" class="form-control" id="validationCustomUsername"
                             aria-describedby="inputGroupPrepend" required>
                     </div>
                 </div>

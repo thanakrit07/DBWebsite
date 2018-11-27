@@ -15,16 +15,16 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
       <!-- logo -->
-      <a class="navbar-brand" href="./Homepage.php">iCanQ</a>
+      <a class="navbar-brand" href="/src/Homepage.php">iCanQ</a>
 
       <!-- Dropmenu -->
       <div class="dropdown ml-md-auto">
         <a class="btn btn-secondary dropdown-toggle " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"aria-haspopup="true" aria-expanded="false">
-            Name
+        <?php include '/../backends/getName.php';?>
         </a>
 
         <div class="dropdown-menu dropdown-menu-right " aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" href="#">Profile</a>
+            <a class="dropdown-item" href="/src/Profile.php">Profile</a>
             <a class="dropdown-item" href="/src/html/CreditCard.html">Credit Card</a>
             <a class="dropdown-item" href="/src/html/History.html">History</a>
             <div class="dropdown-divider"></div>
@@ -34,7 +34,7 @@
 
       <!-- Cart -->
       <div class="dropdown">
-        <a class="btn btn-secondary" href="#" role="button" style=" margin-left: 10px">
+        <a class="btn btn-secondary" href="/src/html/Cart.html" role="button" style=" margin-left: 10px">
             <img src="/../../icon/cart.svg" style="width: 20px;height: 20px;">
         </a>
       </div>
@@ -62,18 +62,21 @@ $result = $conn->query($sql);
 while ($row = mysqli_fetch_array($result)) {
     array_push($shop, $row);
 }
+echo '<form action="./Menu.php" method="POST">';
 echo '<div class="offset-md-1" style="margin-top: 5vh; width: 50vw;">';
 for ($i = 1; $i <= sizeof($shop); $i++) {
     echo '<div class="row">';
-    echo '<div class="shadow-sm p-2 mb-5 rounded col-md-6" style="font-size:large; text-align: center">';
-    echo '<pre><strong>' . $i . '. ' . $shop[$i - 1]["Sname"] . '</strong></pre>';
-    echo '</div>';
+    //echo '<div class="shadow-sm p-2 mb-5 rounded col-md-6" style="font-size:large; text-align: center">';
+    echo '<input type="submit" name="getShop" value='.$shop[$i - 1]["Sname"].' class="shadow-sm p-2 mb-5 rounded col-md-6" style="font-size:large; text-align: center; background :#ffffff">';
+    //echo '<pre><strong>' . $i . '. ' . $shop[$i - 1]["Sname"] . '</strong></pre>';
+    //echo '</div>';
     echo '<p class="shadow-sm p-2 mb-5 rounded col-ms-2 offset-md-2">';
     echo $shop[$i - 1]["Open_time"] . ' - ' . $shop[$i - 1]["Close_time"];
     echo '</p>';
     echo '</div>';
 }
 echo '</div>';
+echo '</form>';
 ?>
 
 <!-- Optional JavaScript -->

@@ -148,11 +148,11 @@ DROP TABLE IF EXISTS OrderQueue;
 CREATE TABLE OrderQueue (
 	QID INTEGER NOT NULL,
     OrderTimeStamp TIMESTAMP NOT NULL,
-    PickupTime TIME NOT NULL,
+    PickupTime TIME,
     PickupStatus BIT(1) NOT NULL,
     PayStatus BIT(1) NOT NULL,
     CID VARCHAR(10) NOT NULL,
-    DID VARCHAR(10) NOT NULL,
+    DID VARCHAR(10),
     DeliveryTime TIME,
     PRIMARY KEY (QID,OrderTimeStamp),
     CONSTRAINT CID_OrderQueue_FK
@@ -221,7 +221,7 @@ INSERT INTO Customer
 INSERT INTO Shop
 	VALUES
     ('1000000000','Kaitod','06:00:00','18:00:00'),
-    ('2000000000','ชิกเก้น ชิกเก้น ทอด','06:00:00','18:00:00'),
+    ('2000000000','ชิกเก้น','06:00:00','18:00:00'),
     ('3000000000','Suki','06:00:00','18:00:00'),
     ('4000000000','lnwza55+','06:00:00','18:00:00'),
     ('5000000000','cp-43','06:00:00','18:00:00'),
@@ -288,15 +288,15 @@ INSERT INTO Delivery_man
 INSERT INTO Foodlist
 	VALUES
     ('1000000000','Suki',30,1,5.0),
-    ('1000000000','Fried Chicken',30,0,5.0),
-    ('2000000000','Fried Chicken',100,1,0.0),
-    ('3000000000','Pork Steak',30,1,4.5),
+    ('1000000000','FriedChicken',30,0,5.0),
+    ('2000000000','FriedChicken',100,1,0.0),
+    ('3000000000','PorkSteak',30,1,4.5),
     ('4000000000','Noodle',30,1,3.6),
-    ('5000000000','Fried Rice',30,1,2.9),
+    ('5000000000','FriedRice',30,1,2.9),
     ('6000000000','Pepsi',30,1,3.8),
     ('7000000000','Salad',30,1,4.6),
-    ('8000000000','Fried Fish',30,1,4.0),
-    ('9000000000','Bacon Steak',30,1,1.3);
+    ('8000000000','FriedFish',30,1,4.0),
+    ('9000000000','BaconSteak',30,1,1.3);
     
 INSERT INTO Feedback
 	VALUES 
@@ -305,11 +305,11 @@ INSERT INTO Feedback
     ('1000000000','Suki','0000000002','2018-12-05 11:47:15','5','Good'),
     ('1000000000','Suki','0000000003','2018-12-05 11:48:15','5','Delicious'),
     ('1000000000','Suki','0000000004','2018-12-05 11:49:15','5','Cheap'),
-    ('3000000000','Fried Chicken','0000000005','2018-12-05 12:45:15','0','Bad'),
-    ('3000000000','Fried Chicken','0000000006','2018-12-05 12:46:15','0','Expensive as heck'),
-    ('3000000000','Fried Chicken','0000000007','2018-12-05 12:47:15','0','Taste like shit'),
-    ('3000000000','Fried Chicken','0000000008','2018-12-05 12:48:15','0','....'),
-    ('3000000000','Fried Chicken','0000000009','2018-12-05 12:49:15','0','No worth at all');
+    ('3000000000','FriedChicken','0000000005','2018-12-05 12:45:15','0','Bad'),
+    ('3000000000','FriedChicken','0000000006','2018-12-05 12:46:15','0','Expensive as heck'),
+    ('3000000000','FriedChicken','0000000007','2018-12-05 12:47:15','0','Taste like shit'),
+    ('3000000000','FriedChicken','0000000008','2018-12-05 12:48:15','0','....'),
+    ('3000000000','FriedChicken','0000000009','2018-12-05 12:49:15','0','No worth at all');
 
 INSERT INTO Ingredient
 	VALUES
@@ -335,7 +335,7 @@ INSERT INTO Consist_of
     ('1000000000','Fried Chicken','Chicken'),
     ('2000000000','Fried Chicken','Chicken'),
     ('3000000000','Pork Steak','Pork'),
-    ('5000000000','Fried Rice','Jasmine Rice'),
+    ('5000000000','Fried Rice','JasmineRice'),
     ('7000000000','Salad','Apple');
     
 INSERT INTO OrderQueue
@@ -354,15 +354,16 @@ INSERT INTO OrderQueue
 INSERT INTO OrderItem
 	VALUES
     (1,'2018-12-05 11:45:15',1,'1000000000','Suki',NULL),
-    (1,'2018-12-05 11:45:15',2,'1000000000','Fried Chicken',1),
-    (2,'2018-12-05 11:45:16',3,'5000000000','Fried Rice',NULL),
-    (2,'2018-12-05 11:45:16',4,'2000000000','Fried Chicken',NULL),
-    (3,'2018-12-05 11:45:17',5,'3000000000','Pork Steak',NULL),
+    (1,'2018-12-05 11:45:15',2,'1000000000','FriedChicken',1),
+	(1,'2018-12-05 11:45:20',11,'1000000000','FriedChicken',1),
+    (2,'2018-12-05 11:45:16',3,'5000000000','FriedRice',NULL),
+    (2,'2018-12-05 11:45:16',4,'2000000000','FriedChicken',NULL),
+    (3,'2018-12-05 11:45:17',5,'3000000000','PorkSteak',NULL),
     (3,'2018-12-05 11:45:17',6,'1000000000','Suki',NULL),
     (4,'2018-12-05 11:45:18',7,'1000000000','Suki',NULL),
     (4,'2018-12-05 11:45:18',8,'1000000000','Suki',NULL),
-    (5,'2018-12-05 11:45:19',9,'8000000000','Fried Fish',NULL),
-    (5,'2018-12-05 11:45:19',10,'9000000000','Bacon Steak',NULL);
+    (5,'2018-12-05 11:45:19',9,'8000000000','FriedFish',NULL),
+    (5,'2018-12-05 11:45:19',10,'9000000000','BaconSteak',NULL);
     
 
     
