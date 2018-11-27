@@ -57,7 +57,8 @@
 <body>
 <?php
 require '/../backends/get_data.php';
-global $menuInfo, $ShopName;
+global $menuInfo, $ShopName, $review;
+print_r($review);
 //open form
 echo '<form action="./Menu.php" method="POST">';
 echo '<div class="row d-flex justify-content-start" style="margin-top: 10vh">';

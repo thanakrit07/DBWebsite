@@ -116,12 +116,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         //get review
-        //$sqlreview = "call getReview('$ShopID','$menuName')";
-        //$resultreview = mysqli_query($conn, $sqlreview) or die ( $mysqli->error );
+        $sqlreview = "call getReview('$ShopID','$menuName')";
+        $resultreview = mysqli_query($conn, $sqlreview) or die($mysqli->error);
 
-        // while ($row = mysqli_fetch_array($resultreview)) {
-        //     array_push($review, $row);
-        // }
+        while ($row = mysqli_fetch_array($resultreview)) {
+            array_push($review, $row);
+        }
 
     } else if (!empty($_POST["OK"])) {
 
@@ -175,7 +175,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header('Location: /src/Profile.php');
         }
     } else if (!empty($_POST["addCart"])) {
-        
+
         //get menu
         $menuName = test_input($_POST["getMName"]);
 
@@ -190,7 +190,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Free result set
             mysqli_free_result($result);
         }
-        $CID = $rowcount-1;
+        $CID = $rowcount - 1;
 
         //get SID
         $sql = "SELECT SID FROM Shop WHERE Sname = '$ShopName'";
@@ -216,12 +216,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Free result set
             mysqli_free_result($result);
         }
-        $OID = $rowcount;
+        $OID = $rowcount + 2;
 
         //addOrder
         $sql = "call addOrderItem('$QID','$OID','$ShopID','$menuName')";
-        if ($conn->query($sql) === false) {
-            reject('{"success":false, "msg":"add order error"}');
-        }
+        $result = mysqli_query($conn, $sql) or die($mysqli->error);
     }
 }
