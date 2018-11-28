@@ -18,7 +18,7 @@ while ($row = mysqli_fetch_array($result)) {
     array_push($allergy, $row);
 }
         echo '<div class="row">';
-            echo '<img src="/../icon/profile.svg" class="rounded d-block" alt="..." style="width: 200px; height: 200px; background-color: #000000">';
+            echo '<img src="/../icon/user.svg" class="rounded d-block" alt="..." style="width: 200px; height: 200px;">';
             echo '<form style="margin-top: 3vh;margin-left: 3vw; width : 40vw" action="/backends/get_data.php" method="POST">';
                 echo '<div class="form-row">';
                     echo '<label for="name" class="col-sm-2 col-form-label">Name</label>';

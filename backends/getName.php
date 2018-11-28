@@ -1,5 +1,4 @@
 <?php
-
 require 'connect.php';
 global $conn;
 $namelist = array();
@@ -10,6 +9,5 @@ $result = mysqli_query($conn, $sql);
 while ($row = mysqli_fetch_array($result)) {
     array_push($namelist, $row);
 }
-echo $namelist[sizeof($namelist)-1]["Fname"];
-
+$CName = $namelist[sizeof($namelist)-1]["Fname"]; 
 ?>

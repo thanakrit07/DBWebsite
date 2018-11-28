@@ -1,4 +1,5 @@
 <?php require '/../backends/get_data.php';?>
+<?php include '/../backends/getName.php';?>
 <!doctype html>
 <html lang="en">
 
@@ -34,29 +35,19 @@
             justify-content: flex-start;
             background-position-x : -10vw;
         }
-
-        .thumbnail-bg {
-            background: rgba(231, 56, 114, 0.8);
-            border-radius: 10px;
-        }
-
-        .thumbnail-bg:hover {
-            background: rgba(102, 23, 49, 1);
-            border: 3px solid #000000;
-        }
     </style>
 
     <div class="row justify-content-end">
         <div class="dropdown ml-md-auto" style="margin: 10px">
             <a class="btn btn-secondary dropdown-toggle " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                <?php include '/../backends/getName.php';?>
+                <?php echo $CName;?>
             </a>
 
             <div class="dropdown-menu dropdown-menu-right " aria-labelledby="dropdownMenuLink">
                 <a class="dropdown-item" href="/src/Profile.php">Profile</a>
-                <a class="dropdown-item" href="/src/html/Credit.html">Credit Card</a>
-                <a class="dropdown-item" href="/src/html/History.html">History</a>
+                <a class="dropdown-item" href="#">Credit Card</a>
+                <a class="dropdown-item" href="#">History</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="./html/Webpage.html">Logout</a>
             </div>
@@ -92,32 +83,32 @@
                 <div class="column">
 
                     <div class="row justify-content-center">
-                        <span class="border border-dark thumbnail-bg">
-                            <a class="column" href="./Shoplist.php" style="color:#ffffff">
-                                <img src="/../../icon/order.svg" class="img-fluid" alt="Responsive image" style="height: 12vh; margin: 3vh 3vh 0vh 3vh">
+                        <span>
+                            <a class="column btn btn-dark border" href="./Shoplist.php" style="color:#ffffff">
+                                <img src="/../../icon/choices.svg" class="img-fluid" alt="Responsive image" style="height: 10vh; margin: 3vh 3vh 0vh 3vh">
                                 <div class="row justify-content-center"><strong>Order Now</strong></div>
                             </a>
                         </span>
 
-                        <span class="border border-dark thumbnail-bg">
-                            <a class="column" href="#" style="color:#ffffff">
-                                <img src="/../../icon/check-square.svg" class="img-fluid" alt="Responsive image" style="height: 12vh; margin: 3vh 3vh 0vh 3vh">
-                                <div class="row justify-content-center"><strong>Order Status</strong></div>
+                        <span>
+                            <a class="column btn btn-dark border" href="./Cart.php" style="color:#ffffff">
+                                <img src="/../../icon/cart.svg" class="img-fluid" alt="Responsive image" style="height: 10vh; margin: 3vh 3vh 0vh 3vh">
+                                <div class="row justify-content-center"><strong>View Order</strong></div>
                             </a>
                         </span>
                     </div>
 
                     <div class="row justify-content-center">
-                        <span class="border border-dark thumbnail-bg">
-                            <a class="column" href="#" style="color:#ffffff">
-                                <img src="/../../icon/history-2.svg" class="img-fluid" alt="Responsive image" style="height: 12vh; margin: 3vh 3vh 0vh 3vh">
+                        <span>
+                            <a class="column btn btn-dark border" href="#" style="color:#ffffff">
+                                <img src="/../../icon/history-2.svg" class="img-fluid" alt="Responsive image" style="height: 10vh; margin: 3vh 3vh 0vh 3vh">
                                 <div class="row justify-content-center"><strong>History</strong></div>
                             </a>
                         </span>
 
-                        <span class="border border-dark thumbnail-bg">
-                            <a class="column" href="./Profile.php" style="color:#ffffff">
-                                <img src="/../../icon/profile.svg" class="img-fluid" alt="Responsive image" style="height: 12vh; margin: 3vh 3vh 0vh 3vh">
+                        <span>
+                            <a class="column btn btn-dark border" href="./Profile.php" style="color:#ffffff">
+                                <img src="/../../icon/profile.svg" class="img-fluid" alt="Responsive image" style="height: 10vh; margin: 3vh 3vh 0vh 3vh">
                                 <div class="row justify-content-center"><strong>View Profile</strong></div>
                             </a>
                         </span>

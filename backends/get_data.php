@@ -107,7 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         $ShopID = $shop[0]["SID"];
 
-        //get menu list
+        //get menu info
         $sqlmenu = "call getFoodinfo('$ShopID','$menuName')";
         $resultmenu = $conn->query($sqlmenu);
 
@@ -116,12 +116,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         //get review
-        $sqlreview = "call getReview('$ShopID','$menuName')";
-        $resultreview = mysqli_query($conn, $sqlreview) or die($mysqli->error);
+        // echo $ShopID.' '.$menuName;
+        // $sqlreview = "call getReview('$ShopID','$menuName')";
+        // $resultreview = $conn->query($sqlreview) or die($mysqli->error);
 
-        while ($row = mysqli_fetch_array($resultreview)) {
-            array_push($review, $row);
-        }
+        // while ($row = mysqli_fetch_array($resultreview)) {
+        //     array_push($review, $row);
+        // }
 
     } else if (!empty($_POST["OK"])) {
 
@@ -201,12 +202,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $ShopID = $shop[0]["SID"];
 
         //get QID
-        $sql = "SELECT QID FROM OrderQueue WHERE CID = '$CID'";
+        $sql = "SELECT * FROM OrderQueue WHERE CID = '$CID'";
         $result = mysqli_query($conn, $sql);
         while ($row = mysqli_fetch_array($result)) {
             array_push($queue, $row);
         }
         $QID = $queue[0]["QID"];
+        $time = $queue[0]["OrderTimeStamp"];
 
         //gen OID
         $sql = "SELECT * FROM OrderItem";
@@ -216,10 +218,52 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Free result set
             mysqli_free_result($result);
         }
-        $OID = $rowcount + 2;
+        $OID = $rowcount + 1;
 
         //addOrder
-        $sql = "call addOrderItem('$QID','$OID','$ShopID','$menuName')";
-        $result = mysqli_query($conn, $sql) or die($mysqli->error);
+        $sql = "call addOrderItem('$QID','$time','$OID','$ShopID','$menuName')";
+        if ($result = mysqli_query($conn, $sql)) {
+            header('Location: /src/Shoplist.php');
+        } else {
+            reject('{"success":false, "msg":"Insert Error"}');
+        }
+    } else if (!empty($_POST["Next"])) {
+        include 'getName.php';
+        $tmp = array();
+
+        global $namelist;
+        $CID = $namelist[sizeof($namelist) - 1]["CID"];
+
+        //get qid
+        $sql = "SELECT QID FROM OrderQueue WHERE CID = '$CID'";
+        $result = $conn->query($sql);
+
+        while ($row = mysqli_fetch_array($result)) {
+            array_push($tmp, $row);
+        }
+
+        $QID = $tmp[0]["QID"];
+        $PickTime = $_POST["Hour"] . ':' . $_POST["Minute"].':00';
+
+        //update pickup time
+        $sql = "call ChangePickupTime ('$QID','$PickTime')";
+        if ($result = mysqli_query($conn, $sql)) {
+            header('Location: /src/Confirm.php');
+        } else {
+            reject('{"success":false, "msg":"Update Error"}');
+        }
+    } else if (!empty($_POST["Delete"])) {
+        include 'getOrder.php';
+        global $OrderDetail,$Order;
+        $index = $_POST["Delete"];
+        $OID = $Order[$index-1]["OID"];
+
+        //update pickup time
+        $sql = "call deleteOrderItem ($OID)";
+        if ($result = mysqli_query($conn, $sql)) {
+            header('Location: /src/Cart.php');
+        } else {
+            reject('{"success":false, "msg":"Update Error"}');
+        }
     }
 }

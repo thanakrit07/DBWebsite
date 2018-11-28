@@ -1,3 +1,4 @@
+<?php include '/../backends/getName.php';?>
 <!doctype html>
 <html lang="en">
 
@@ -33,13 +34,13 @@
         <div class="dropdown ml-md-auto">
             <a class="btn btn-secondary dropdown-toggle " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                <?php include '/../backends/getName.php';?>
+                <?php echo $CName;?>
             </a>
 
             <div class="dropdown-menu dropdown-menu-right " aria-labelledby="dropdownMenuLink">
                 <a class="dropdown-item" href="/src/Profile.php">Profile</a>
-                <a class="dropdown-item" href="/src/html/CreditCard.html">Credit Card</a>
-                <a class="dropdown-item" href="/src/html/History.html">History</a>
+                <a class="dropdown-item" href="#">Credit Card</a>
+                <a class="dropdown-item" href="#">History</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="/src/html/Webpage.html">Logout</a>
             </div>
@@ -47,7 +48,7 @@
 
         <!-- Cart -->
         <div class="dropdown">
-            <a class="btn btn-secondary" href="#" role="button" style=" margin-left: 10px">
+            <a class="btn btn-secondary" href="/src/Cart.php" role="button" style=" margin-left: 10px">
                 <img src="/../../icon/cart.svg" style="width: 20px;height: 20px;">
             </a>
         </div>
@@ -57,8 +58,7 @@
 <body>
 <?php
 require '/../backends/get_data.php';
-global $menuInfo, $ShopName, $review;
-print_r($review);
+global $menuInfo, $ShopName;
 //open form
 echo '<form action="./Menu.php" method="POST">';
 echo '<div class="row d-flex justify-content-start" style="margin-top: 10vh">';
@@ -96,7 +96,7 @@ echo '<div class="row offset-md-1" style="margin-top: 5vh;">
                 <p class="h1">ราคารวม : </p>
                 <div id="display2" style="margin: 2vh">0</div>
                 <p class="h1">บาท</p>
-            </div>--> 
+            </div>-->
             <div class="row">
                 <input type="submit" name="addCart" value="ADD TO CART" class="btn btn-success">
             </div>

@@ -20,13 +20,13 @@
       <!-- Dropmenu -->
       <div class="dropdown ml-md-auto">
         <a class="btn btn-secondary dropdown-toggle " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"aria-haspopup="true" aria-expanded="false">
-        <?php include '/../backends/getName.php';?>
+        <?php include '/../backends/getName.php'; echo $CName;?>
         </a>
 
         <div class="dropdown-menu dropdown-menu-right " aria-labelledby="dropdownMenuLink">
             <a class="dropdown-item" href="#">Profile</a>
-            <a class="dropdown-item" href="/src/html/CreditCard.html">Credit Card</a>
-            <a class="dropdown-item" href="/src/html/History.html">History</a>
+            <a class="dropdown-item" href="#">Credit Card</a>
+            <a class="dropdown-item" href="#">History</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="/src/html/Webpage.html">Logout</a>
         </div>
@@ -34,7 +34,7 @@
 
       <!-- Cart -->
       <div class="dropdown">
-        <a class="btn btn-secondary" href="#" role="button" style=" margin-left: 10px">
+        <a class="btn btn-secondary" href="/src/Cart.php" role="button" style=" margin-left: 10px">
             <img src="/../../icon/cart.svg" style="width: 20px;height: 20px;">
         </a>
       </div>
@@ -42,13 +42,13 @@
 </head>
 
 <body>
-<div id = "profile">
+<div id = "profile" style = "font-size : 20px">
     <div class="container" style="margin-top: 20vh ;margin-left: 30vw; margin-right: 20vw;">
         <div class="row">
-            <img src="/../icon/profile.svg" class="rounded d-block" alt="..." style="width: 200px; height: 200px; background-color: #000000">
+            <img src="/../icon/user.svg" class="rounded d-block" alt="..." style="width: 200px; height: 200px;">
             <?php include '/../backends/getProfile.php';?>
         </div>
-        <a id="btn-edit" class="btn btn-primary" type="submit" href="./editProfile.php" style="margin-top: 5vh;font-size: 20px">Edit</a>
+        <a id="btn-edit" class="btn btn-primary" type="submit" href="./editProfile.php" style="margin-top: 5vh; margin-left: 3.5vw; font-size: 20px">Edit</a>
     </div>
 </div>
 

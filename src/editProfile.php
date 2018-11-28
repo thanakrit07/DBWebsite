@@ -20,13 +20,13 @@
       <!-- Dropmenu -->
       <div class="dropdown ml-md-auto">
         <a class="btn btn-secondary dropdown-toggle " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"aria-haspopup="true" aria-expanded="false">
-        <?php include '/../backends/getName.php';?>
+        <?php include '/../backends/getName.php'; echo $CName;?>
         </a>
 
         <div class="dropdown-menu dropdown-menu-right " aria-labelledby="dropdownMenuLink">
             <a class="dropdown-item" href="#">Profile</a>
-            <a class="dropdown-item" href="/src/html/CreditCard.html">Credit Card</a>
-            <a class="dropdown-item" href="/src/html/History.html">History</a>
+            <a class="dropdown-item" href="#">Credit Card</a>
+            <a class="dropdown-item" href="#">History</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="/src/html/Webpage.html">Logout</a>
         </div>
